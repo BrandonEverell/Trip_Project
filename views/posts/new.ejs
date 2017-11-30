@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+<div class="col-md-10">
+  <form
+  class="d-flex"
+  action="/posts"
+  enctype="multipart/form-data"
+  method="POST"
+  >
+
+  <div class="form-group">
+    <textarea
+    class="form-control"
+    name="title"
+    type="text"
+    placeholder="Title..."
+    ></textarea>
+    <div>
+
+    <div class="form-group">
+      <textarea
+        class="form-control"
+        rows='20'
+        name='content'
+        placeholder="Post Details"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+        <input
+          class="form-control"
+          name="photo"
+          type="file"
+        />
+      </div>
+      
+    <input
+        class="btn btn-outline-primary align-self-end"
+        type='submit'
+        value='Submit'
+      />
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+<%- include('../partials/footer') %>

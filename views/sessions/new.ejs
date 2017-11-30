@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<form class="d-flex flex-column" action="/session" method="POST">
+   <div class="form-group">
+     <input
+       class="form-control"
+       name="email"
+       placeholder="Email"
+       type="email"
+     />
+   </div>
+
+   <div class="form-group">
+     <input
+       class="form-control"
+       name="password"
+       placeholder="Password"
+       type="password"
+     />
+   </div>
+
+   <input
+     class="btn btn-outline-primary align-self-end"
+     type="submit"
+     value="Sign In"
+   />
+ </form>
+
+
+
+<%- include('../partials/footer') %>

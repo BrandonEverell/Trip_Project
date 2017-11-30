@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Rambla');
+ @import url('https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css');
+ @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
+
+
+
+
+#welcomebg {
+  background-image: url("../images/beach.jpg");
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+}
+
+#login{
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.transbox {
+
+background: rgba(0, 0, 0, 0.5);
+}
+
+
+.transbox h1 {
+  margin: 30px;
+  color: white;
+  font-size: 14em;
+}
+
+
+.transbox h3 {
+  color: white;
+
+}
