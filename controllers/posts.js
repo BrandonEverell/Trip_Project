@@ -2,9 +2,7 @@ const kx = require("../db/connection");
 
 const PostsController = {
   index(req, res, next) {
-    const { title, content } = req.body;
     console.log(req.session);
-    console.log('fuck', req.body)
     kx
       .select("posts.*")
       .from("posts")

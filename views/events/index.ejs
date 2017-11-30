@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs') %>
+<% for (let event of events) { %>
+  <div>
+    <a href="/events/<%= event.id %>">
+       <%= event.title %>
+       </a>
+  </div>
+<% } %>
+
+
+
+
+
+<%- include('../partials/footer.ejs') %>

@@ -3,6 +3,7 @@ const path = require('path');
 const PostsController = require('./controllers/posts')
 const UsersController = require('./controllers/users')
 const SessionsController = require('./controllers/sessions')
+const EventsController = require('./controllers/events')
 const multer = require('multer')
 
 const upload = multer({dest: path.join(__dirname, 'public', 'uploads')})
@@ -11,6 +12,7 @@ const root = Router()
 const posts = Router()
 const users = Router()
 const session = Router()
+const events = Router()
 //User Routes
 root.use('/users', users)
 users.get('/new', UsersController.new)
@@ -31,4 +33,12 @@ root.use('/session', session)
 session.get('/new', SessionsController.new)
 session.post('/', SessionsController.create)
 session.delete('/', SessionsController.destroy)
+
+// Events Routes
+root.use('/events', events)
+events.get('/', EventsController.index)
+events.get('/new', EventsController.new)
+events.post('/', EventsController.create)
+events.get('/:id', EventsController.show)
+
 module.exports = root;

@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs') %>
+Events
+<div class="col-md-10">
+  <form
+  class="d-flex"
+  action="/events"
+  method="POST"
+  >
+
+  <div class="form-group">
+    <textarea
+    class="form-control"
+    name="title"
+    type="text"
+    placeholder="Title..."
+    ></textarea>
+    <div>
+
+    <div class="form-group">
+      <input
+        name="date"
+        type="date"
+      >
+    </div>
+
+    <input
+        class="btn btn-outline-primary align-self-end"
+        type='submit'
+        value='Submit'
+      />
+    </form>
+  </div>
+
+
+<%- include('../partials/footer.ejs') %>
