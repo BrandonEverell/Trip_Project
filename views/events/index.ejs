@@ -1,13 +1,22 @@
 <%- include('../partials/header.ejs') %>
+
+<div class="container eventHeader">
+  <h1> Events </h1>
 <% for (let event of events) { %>
-  <div>
+  <div><h4>
     <a href="/events/<%= event.id %>">
        <%= event.title %>
        </a>
+       <form
+       action="events/<%= event.id %>"
+       method="POST"
+       >
+       <input class="btn btn-success" type="submit" value="join">
+       </form>
+       </h4>
   </div>
 <% } %>
-
-
+</div>
 
 
 

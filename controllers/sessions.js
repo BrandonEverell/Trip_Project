@@ -13,6 +13,7 @@ const SessionsController = {
 
       if (user & await bcrypt.compare(password, user.passwordDigest)) {
         req.session.userId = user.id
+        console.log(user.id)
         req.flash('success', 'Thank you for signing in!')
         res.redirect('/')
       } else {
@@ -24,10 +25,10 @@ const SessionsController = {
     }
   },
   destroy (req, res, next) {
-    req.session.userId = null
-    req.flash('success', 'Logged out successfully!')
-    res.redirect('/')
-  }
+    console.log(req.session)
+      req.session = null
+     res.redirect('/')
+   }
 }
 
 module.exports = SessionsController

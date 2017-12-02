@@ -33,6 +33,10 @@
              <li class="nav-item">
                <a class="nav-link" href="#">Hi, <%= currentUser.first_name%>!</a>
              </li>
+             <li class="nav-item ml-2">
+              <form class="form-inline" action="/session?_method=DELETE" method="POST">
+                <input class="btn btn-outline-primary" type="submit" value="Sign Out">
+              </form>
            <% } else { %>
              <li class="nav-item">
                <form class="form-inline" action="/users/new" method="GET">

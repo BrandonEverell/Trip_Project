@@ -36,7 +36,7 @@ const PostsController = {
     const { currentUser } = req;
     console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", req.body);
 
-    if (req.file === undefined) {
+    if (req.files === undefined) {
       console.log("Only text here");
       kx
         .insert({ user_id: currentUser.id, title: title, content: content })
@@ -46,16 +46,19 @@ const PostsController = {
           res.redirect("/posts");
         });
     } else {
-      const { filename } = req.file;
       console.log("continue as normal");
-      kx
-        .insert({
-          user_id: currentUser.id,
-          title: title,
-          content: content,
-          photo_path: `/uploads/${filename}`
-        })
-        .into("posts")
+      console.log(req.files)
+      const insertPromiseArray = req.files.map((file) => {
+        return kx
+          .insert({
+            user_id: currentUser.id,
+            title: title,
+            content: content,
+            photo_path: `/uploads/${file.filename}`
+          })
+          .into("posts")
+      })
+      Promise.all(insertPromiseArray)
         .then(() => {
           req.flash("success", "Post Created!");
           res.redirect("/posts");

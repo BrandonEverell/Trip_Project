@@ -38,7 +38,8 @@ app.use(session({
   name: '_trip',
   secret: 'supersecret', // key used to encrypt session
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 // A day (in milliseconds)
+    // maxAge: 1000 * 60 * 60 * 24  // A day (in milliseconds)
+      maxAge: 1000
   },
   resave: true,
   saveUninitialized: false,
