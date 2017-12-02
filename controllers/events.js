@@ -12,7 +12,7 @@ const EventsController = {
 
   async show(req, res, next) {
     const { id } = req.params;
-    const { currentUser} = req;
+    const { currentUser } = req;
 
     try {
       const event = await kx
@@ -24,14 +24,14 @@ const EventsController = {
       const attendees = await kx
         .select("users.*")
         .from("attendees")
-        .innerJoin("users", "attendees.user_id","users.id")
-        .where({ event_id: id })
+        .innerJoin("users", "attendees.user_id", "users.id")
+        .where({ event_id: id });
 
-        const posts = await kx
-          .first("posts.*")
-          .from("posts")
-          .innerJoin("users", "posts.user_id", "users.id")
-          .where({ "posts.id": id });
+      const posts = await kx
+        .first("posts.*")
+        .from("posts")
+        .innerJoin("users", "posts.user_id", "users.id")
+        .where({ "posts.id": id });
 
       res.render("events/show", { event, attendees, posts });
     } catch (error) {
@@ -59,8 +59,8 @@ const EventsController = {
   },
 
   async joinGroup(req, res, next) {
-    const { currentUser} = req;
-    const { id } = req.params
+    const { currentUser } = req;
+    const { id } = req.params;
 
     try {
       await kx
@@ -74,20 +74,19 @@ const EventsController = {
         .innerJoin("users", "events.creator_id", "users.id")
         .where({ "events.id": id });
 
-        const attendees = await kx
-          .select("users.*")
-          .from("attendees")
-          .innerJoin("users", "attendees.user_id","users.id")
-          .where({ event_id: id })
+      const attendees = await kx
+        .select("users.*")
+        .from("attendees")
+        .innerJoin("users", "attendees.user_id", "users.id")
+        .where({ event_id: id });
 
-          const posts = await kx // SET UP THIS QUERY
-            .first("posts.*")
-            .from("posts")
-            .innerJoin("users", "posts.user_id", "users.id")
-            .where({ "posts.id": id });
+      const posts = await kx // SET UP THIS QUERY
+        .first("posts.*")
+        .from("posts")
+        .innerJoin("users", "posts.user_id", "users.id")
+        .where({ "posts.id": id });
 
-
-      res.render('events/show', { event, attendees, posts });
+      res.render("events/show", { event, attendees, posts });
     } catch (error) {
       next(error);
     }

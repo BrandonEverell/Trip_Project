@@ -5,7 +5,7 @@
 </div>
 
 <div>
-MEMBERS
+<h2>MEMBERS</h2>
 <% attendees.forEach(attendee => { %>
     <p>
     Name: <%= attendee.first_name %> <%= attendee.last_name %>
@@ -14,8 +14,10 @@ MEMBERS
 </div>
 
 <div>
-  Bloop
-<a href="../posts/new">  Create Post </a>
+<h2><a href="../posts/new">  Create Post </a></h2>
 </div>
+<div>
+<h2> View Posts </h2>
+<div>
 
 <%- include('../partials/footer') %>

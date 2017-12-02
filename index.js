@@ -5,9 +5,9 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const keys = require("./config/keys");
 const session = require('express-session')
+const methodOverride = require('method-override');
 const flash = require('flash');
 const KnexSessionStore = require('connect-session-knex')(session)
-const methodOverride = require('method-override');
 const kx = require('./db/connection')
 require('./services/passport');
 
@@ -34,12 +34,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use(morgan('dev'))
+ app.use(methodOverride('_method'))
 app.use(session({
   name: '_trip',
   secret: 'supersecret', // key used to encrypt session
   cookie: {
-    // maxAge: 1000 * 60 * 60 * 24  // A day (in milliseconds)
-      maxAge: 1000
+     maxAge: 1000 * 60 * 60 * 24  // A day (in milliseconds)
   },
   resave: true,
   saveUninitialized: false,

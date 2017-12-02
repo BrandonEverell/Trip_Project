@@ -2,7 +2,9 @@
  @import url('https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css');
  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
 
-
+* {
+  font-family: 'Oxygen', sans-serif;
+}
 
 
 #welcomebg {

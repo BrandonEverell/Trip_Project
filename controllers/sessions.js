@@ -25,10 +25,11 @@ const SessionsController = {
     }
   },
   destroy (req, res, next) {
-    console.log(req.session)
-      req.session = null
+    console.log("IS THIS DOING ANYTHING??????????????")
+     req.session.userId = null
+     req.flash('success', 'Logged out successfully!')
      res.redirect('/')
    }
-}
+ }
 
 module.exports = SessionsController

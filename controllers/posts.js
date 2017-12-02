@@ -9,7 +9,6 @@ const PostsController = {
       .innerJoin("users", "posts.user_id", "users.id")
       .orderBy("posts.created_at", "DESC")
       .then(posts => res.render("posts/index", { posts }));
-
   },
 
   async show(req, res, next) {
@@ -34,8 +33,7 @@ const PostsController = {
   create(req, res, next) {
     const { title, content } = req.body;
     const { currentUser } = req;
-    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$", req.body);
-
+    
     if (req.files === undefined) {
       console.log("Only text here");
       kx
@@ -47,8 +45,8 @@ const PostsController = {
         });
     } else {
       console.log("continue as normal");
-      console.log(req.files)
-      const insertPromiseArray = req.files.map((file) => {
+      console.log(req.files);
+      const insertPromiseArray = req.files.map(file => {
         return kx
           .insert({
             user_id: currentUser.id,
@@ -56,13 +54,12 @@ const PostsController = {
             content: content,
             photo_path: `/uploads/${file.filename}`
           })
-          .into("posts")
-      })
-      Promise.all(insertPromiseArray)
-        .then(() => {
-          req.flash("success", "Post Created!");
-          res.redirect("/posts");
-        });
+          .into("posts");
+      });
+      Promise.all(insertPromiseArray).then(() => {
+        req.flash("success", "Post Created!");
+        res.redirect("/posts");
+      });
     }
   },
   destroy(req, res, next) {
