@@ -9,17 +9,18 @@ const multer = require('multer')
 const upload = multer({dest: path.join(__dirname, 'public', 'uploads')});
 
 const root = Router()
-const posts = Router()
 const users = Router()
 const session = Router()
 const events = Router()
+const posts = Router({mergeParams: true});
 //User Routes
 root.use('/users', users)
 users.get('/new', UsersController.new)
 users.post('/', UsersController.create)
 
 //Posts Routes
-root.use('/posts', posts)
+
+
 posts.get('/', PostsController.index)
 posts.get('/new', PostsController.new)
 posts.post('/', upload.array('photo'), PostsController.create)
@@ -41,6 +42,11 @@ events.get('/new', EventsController.new)
 events.post('/', EventsController.create)
 events.get('/:id', EventsController.show)
 events.post('/:id', EventsController.joinGroup)
+events.get('/:id/newPost', EventsController.newPost)
+events.post('/:id/createPost', upload.array('photo'), EventsController.createPost)
+
+events.use('/:event_id/posts', posts)
+// events.use('/posts', posts)
 
 
 module.exports = root;

@@ -2,7 +2,6 @@ const kx = require("../db/connection");
 
 const PostsController = {
   index(req, res, next) {
-    console.log(req.session);
     kx
       .select("posts.*")
       .from("posts")
@@ -33,32 +32,37 @@ const PostsController = {
   create(req, res, next) {
     const { title, content } = req.body;
     const { currentUser } = req;
-    
+    const { event_id} = req.params
+    const post = { title, event_id, content, currentUser}
+    console.log(post);
+
+
     if (req.files === undefined) {
       console.log("Only text here");
       kx
-        .insert({ user_id: currentUser.id, title: title, content: content })
+        .insert({ user_id: currentUser.id, title: title, content: content, event_id: event_id })
         .into("posts")
         .then(() => {
           req.flash("success", "Post Created!");
-          res.redirect("/posts");
+          res.redirect(`"/events/${event_id}`);
         });
     } else {
       console.log("continue as normal");
-      console.log(req.files);
+
       const insertPromiseArray = req.files.map(file => {
         return kx
           .insert({
             user_id: currentUser.id,
             title: title,
             content: content,
+            event_id: event_id,
             photo_path: `/uploads/${file.filename}`
           })
           .into("posts");
       });
       Promise.all(insertPromiseArray).then(() => {
         req.flash("success", "Post Created!");
-        res.redirect("/posts");
+        res.redirect(`"/events/${event_id}`);
       });
     }
   },

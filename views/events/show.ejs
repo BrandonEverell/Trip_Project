@@ -1,23 +1,49 @@
 <%- include('../partials/header') %>
-<div class="d-flex justify-content-center align-items-center">
+<div class="container">
+<div class="d-flex container justify-content-center align-items-center">
 <h1> <%= event.title %> </h1>
 <p> <%= event.date  %> </p>
 </div>
 
-<div>
-<h2>MEMBERS</h2>
-<% attendees.forEach(attendee => { %>
-    <p>
-    Name: <%= attendee.first_name %> <%= attendee.last_name %>
-    </p>
-  <% }) %>
+<div class="col-sm-3">
+  <div class="card">
+<div class="card-header">
+<h3>Members</h3>
 </div>
-
+<ul class="list-group">
+<% attendees.forEach(attendee => { %>
+    <li class="list-group-item list-group-item-action"><strong><%= attendee.first_name %> <%= attendee.last_name %></strong></li>
+  <% }) %>
+  </ul>
+</div>
+</div>
 <div>
-<h2><a href="../posts/new">  Create Post </a></h2>
+<h2><a href="/events/<%=event.id%>/newPost">  Create Post </a></h2>
 </div>
 <div>
 <h2> View Posts </h2>
-<div>
 
+
+
+
+<% for (let post of posts) { %>
+  <div class="col-sm-8 postsIndex">
+    <div class="card">
+      <div class="card-header">
+        <strong><%= post.title %></strong>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <%= post.content %>
+        </p>
+      </div>
+      <a href="/posts/<%= post.id %>">
+        <img class="card-img" src="<%= post.photo_path %>">
+      </a>
+    </div>
+  </div>
+  </div>
+<% } %>
+</div>
+</div>
 <%- include('../partials/footer') %>
