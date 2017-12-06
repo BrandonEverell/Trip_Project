@@ -8,7 +8,7 @@
 
 
 #welcomebg {
-  background-image: url("../images/beach.jpg");
+  background-image: url("../images/sample.jpg");
   background-repeat:no-repeat;
   background-size: 100% 100%;
   width: 100vw;
@@ -17,9 +17,7 @@
 
 #login{
   display: flex;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .transbox {
@@ -29,9 +27,8 @@ background: rgba(0, 0, 0, 0.5);
 
 
 .transbox h1 {
-  margin: 30px;
   color: white;
-  font-size: 14em;
+  font-size: 9vw;
 }
 
 
@@ -42,4 +39,29 @@ background: rgba(0, 0, 0, 0.5);
 
 .postsIndex {
   margin-top: 10px;
+}
+
+.newPost {
+  padding: 0px;
+  margin: 10px;
+  height: 95vh;
+}
+
+.sideBar {
+  position: fixed;
+  right: 20px;
+  margin-top: 10px;
+}
+
+.card-img-bottom {
+  color: #fff;
+}
+
+body {
+   padding-top: 55px;
+  }
+
+.avatar {
+  width: 250px;
+  height: 250px;
 }

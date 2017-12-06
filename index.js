@@ -9,6 +9,7 @@ const methodOverride = require('method-override');
 const flash = require('flash');
 const KnexSessionStore = require('connect-session-knex')(session)
 const kx = require('./db/connection')
+const moment = require('moment');
 require('./services/passport');
 
 const welcome = require('./routes/welcome');

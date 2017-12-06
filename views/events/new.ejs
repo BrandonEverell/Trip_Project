@@ -1,8 +1,13 @@
 <%- include('../partials/header.ejs') %>
-Events
-<div class="col-md-10">
+
+<div class="container col-md-11 mg-top-2">
+<div class="card">
+  <div class="card-header text-center">
+  <h3> Create an Event</h3>
+</div>
+
   <form
-  class="d-flex"
+  class="flex-direction: coloumn col-md-9"
   action="/events"
   method="POST"
   >
@@ -10,11 +15,22 @@ Events
   <div class="form-group">
     <textarea
     class="form-control"
+
     name="title"
     type="text"
     placeholder="Title..."
     ></textarea>
-    <div>
+  </div>
+
+      <div class="form-group">
+        <textarea
+        class="form-control"
+        rows='10'
+        name="description"
+        type="text"
+        placeholder="Event Details..."
+        ></textarea>
+      </div>
 
     <div class="form-group">
       <input
@@ -30,6 +46,7 @@ Events
       />
     </form>
   </div>
+</div>
 
 
 <%- include('../partials/footer.ejs') %>

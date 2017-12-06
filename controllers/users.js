@@ -5,6 +5,21 @@ const UsersController = {
   new(req, res, next) {
     res.render("users/new");
   },
+
+  async show(req, res, next) {
+    const { id } = req.params
+    const { currentUser } = req
+
+    try {
+      const users = await kx
+      .first("users.*")
+      .from("users")
+      .where({"users.id": id})
+      .then(users => res.render("users/show", { users}))
+    } catch (error) {
+      next(error);
+    }
+  },
   async create(req, res, next) {
     const {first_name, last_name, email, password, confirmPassword} = req.body;
 
@@ -17,7 +32,7 @@ const UsersController = {
 
     try {
       const passwordDigest = await bcrypt.hash(password, 10);
-      console.log("$#$#$#$#$#$#$#$", passwordDigest)
+    
 
       const [user] = await kx
         .insert({ first_name, last_name, email, passwordDigest })
@@ -35,6 +50,35 @@ const UsersController = {
     } catch (error) {
       next(error);
     }
+},
+edit(req, res, next) {
+  const { id } = req.params;
+
+  kx
+    .first()
+    .from("users")
+    .where({ id })
+    .then(users => res.render("users/edit", { users }))
+    .catch(error => next(error));
+},
+update(req, res, next) {
+
+  const { id } = req.params;
+  const { first_name, last_name, about, email } = req.body;
+  const users = { first_name, last_name, email, about };
+console.log('users:', users)
+console.log('body', req.body)
+console.log('params', req.params)
+  if (req.file) {
+    const { filename } = req.file;
+    users.photo_path = `/uploads/${filename}`;
   }
+
+  kx("users")
+    .update(users)
+    .where({ id })
+    .then(() => res.redirect(`/users/${id}`))
+    .catch(error => next(error));
+}
 };
 module.exports = UsersController;

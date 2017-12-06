@@ -32,7 +32,9 @@ const EventsController = {
         .from("posts")
         .innerJoin("events", "posts.event_id", "events.id")
         .innerJoin("users", "posts.user_id", "users.id")
+        .orderBy("posts.created_at", "DESC")
         .where({ 'events.id': id })
+
         .then(posts => res.render("events/show", { event, attendees, posts }))
 
 
@@ -49,10 +51,10 @@ const EventsController = {
   },
 
   create(req, res, next) {
-    const { title, date } = req.body;
+    const { title, date, description } = req.body;
     const { currentUser } = req;
     kx
-      .insert({ creator_id: currentUser.id, title: title, date: date })
+      .insert({ creator_id: currentUser.id, title: title, date: date, description: description })
       .into("events")
       .then(() => {
         req.flash("Success", "Event Created!");
@@ -82,13 +84,15 @@ const EventsController = {
         .innerJoin("users", "attendees.user_id", "users.id")
         .where({ event_id: id });
 
-      const posts = await kx // SET UP THIS QUERY
-        .first("posts.*")
-        .from("posts")
-        .innerJoin("users", "posts.user_id", "users.id")
-        .where({ "posts.id": id });
+        const posts = await kx
+          .select("posts.*")
+          .from("posts")
+          .innerJoin("events", "posts.event_id", "events.id")
+          .innerJoin("users", "posts.user_id", "users.id")
+          .where({ 'events.id': id })
+          .then(posts => res.render("events/show", { event, attendees, posts }))
 
-      res.render("events/show", { event, attendees, posts });
+
     } catch (error) {
       next(error);
     }
@@ -127,7 +131,7 @@ const EventsController = {
           res.redirect(`/events/${id}`);
         });
     } else {
-      console.log("continue as normal");
+  
 
       const insertPromiseArray = req.files.map(file => {
         return kx
@@ -141,7 +145,6 @@ const EventsController = {
           .into("posts");
       });
       Promise.all(insertPromiseArray).then(() => {
-        console.log('SSSSSSSDSFDFDFDFDFDFDFDFDFDFDFD')
          req.flash("success", "Post Created!");
          console.log(`/events/${id}`)
         res.redirect(`/events/${id}`);

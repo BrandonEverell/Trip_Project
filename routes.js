@@ -17,6 +17,9 @@ const posts = Router({mergeParams: true});
 root.use('/users', users)
 users.get('/new', UsersController.new)
 users.post('/', UsersController.create)
+users.get('/:id', UsersController.show)
+users.get('/:id/edit', UsersController.edit)
+users.patch('/:id', upload.single('photo'), UsersController.update)
 
 //Posts Routes
 
@@ -45,8 +48,9 @@ events.post('/:id', EventsController.joinGroup)
 events.get('/:id/newPost', EventsController.newPost)
 events.post('/:id/createPost', upload.array('photo'), EventsController.createPost)
 
+// Posts Nested in Event Routes
 events.use('/:event_id/posts', posts)
-// events.use('/posts', posts)
+
 
 
 module.exports = root;

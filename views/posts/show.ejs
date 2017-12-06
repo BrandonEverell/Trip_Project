@@ -1,20 +1,24 @@
 <%- include('../partials/header') %>
 
-<div class="col-sm-8 ">
-  <div class="card">
-    <div class="card-header d-flex align-items-center">
-        <strong><%= post.title %></strong>
+
+
+<div class="container col-md-12">
+    <div class="card">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card-block">
+            <h3 class="card-title"><strong><%= post.title %></strong></h3 >
+            <p class="card-text"><%= post.content %></p>
+          </div>
         </div>
-          <a href="/posts/<%= post.id %>">
-            <img class="card-img" src="<%= post.photo_path %>">
-          </a>
-        <div class="card-body">
-          <p class="card-text">
-            <%= post.content %>
-          </p>
+        <div class="col-md-9">
+          <div class="card-img-b">
+              <img class="card-img" src="<%= post.photo_path %>">
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
 
 

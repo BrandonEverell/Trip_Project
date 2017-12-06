@@ -1,19 +1,23 @@
 <%- include('../partials/header.ejs') %>
 
 <div class="container eventHeader">
-  <h1> Events </h1>
+
+  <div class="card">
+    <div class="card-header text-center">
+    <h3> Create an Event</h3>
+  </div>
 <% for (let event of events) { %>
-  <div><h4>
-    <a href="/events/<%= event.id %>">
-       <%= event.title %>
-       </a>
-       <form
-       action="events/<%= event.id %>"
-       method="POST"
-       >
-       <input class="btn btn-success" type="submit" value="join">
-       </form>
-       </h4>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title"><a href="/events/<%= event.id %>"><%= event.title %></a></h4>
+    <h6 class="card-subtitle text-muted"><%= event.date%></h6>
+  <form
+    action="events/<%= event.id %>"
+    method="POST"
+    >
+      <input class="btn btn-success" type="submit" value="join">
+      </form>
+    </div>
   </div>
 <% } %>
 </div>

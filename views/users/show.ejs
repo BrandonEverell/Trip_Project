@@ -1,0 +1,12 @@
+<%- include('../partials/header') %>
+<div class="container col-md-12 flex-direction: row align-content: flex-start">
+<div class="card">
+<h2 class="card-header"> <%=users.first_name %> <%=users.last_name %> </h2>
+<div class="card-body">
+<img class="card-img avatar" src="<%=users.photo_path %>">
+
+<h4 class="card-text"><%=users.about %></h4>
+</div>
+</div>
+</div>
+<%- include('../partials/footer') %>

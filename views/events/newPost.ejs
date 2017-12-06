@@ -1,24 +1,28 @@
 <%- include('../partials/header') %>
-New Post
 
-<div class="col-md-10">
+<div class="container col-md-11 mg-top-2">
+  <div class="card ">
+  <div class="card-header text-center ">
+  <h3>  Create a post </h3>
+  </div>
+
   <form
-  class="d-flex"
+  class="flex-direction: column col-md-9 "
   action="/events/<%=event.id%>/createPost"
   enctype="multipart/form-data"
   method="POST"
   >
 
-  <div class="form-group">
+  <div class="form-group col-md-9">
     <textarea
     class="form-control"
     name="title"
     type="text"
     placeholder="Title..."
     ></textarea>
-    <div>
+  </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-9">
       <textarea
         class="form-control"
         rows='20'
@@ -27,9 +31,9 @@ New Post
       ></textarea>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-9">
         <input
-          class="form-control"
+          class="form-control-file"
           name="photo"
           type="file"
           multiple
@@ -43,7 +47,8 @@ New Post
       />
     </form>
   </div>
-
+  </div>
+</div>
 
 
 

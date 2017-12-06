@@ -1,6 +1,6 @@
 <%- include('./partials/header') %>
-  <div id="welcomebg" class="d-flex justify-content-center align-items-center">
-
+  <div id="welcomebg" class="container-fluid col-md-12 flex-direction: row align-content: flex-start">
+<%# justify-content-center align-items-center%>
   <%# <div id="login" class="card text-center" style="width: 20rem;">
   <div class="card-block">
     <h4 class="card-title">Log In</h4>
@@ -9,7 +9,14 @@
   </div>
 </div>
 </div>%>
-  <div id="login" class="container-fluid text-center " style="width: 20rem;">
+
+<div class="col-md-9 transbox">
+  <h1>ADVENTURE
+  CONNECT
+  SHARE</h1>
+</div>
+
+  <div id="login" class=" col-md-3 text-center">
   <div class="card bg-light">
   <h2 class="card-header bg-success text-white ">Log In</h2>
   <div class="card-body">
@@ -45,6 +52,7 @@
 </div>
 </div>
 </div>
+
 </div>
 
 <%- include('./partials/footer') %>
