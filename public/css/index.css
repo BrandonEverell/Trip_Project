@@ -22,13 +22,13 @@
 
 .transbox {
 
-background: rgba(0, 0, 0, 0.5);
+background: rgba(0, 0, 0, 0);
 }
 
 
 .transbox h1 {
   color: white;
-  font-size: 9vw;
+  font-size: 8vw;
 }
 
 
@@ -64,4 +64,12 @@ body {
 .avatar {
   width: 250px;
   height: 250px;
+
 }
+
+/*.listRight {
+  position: fixed;
+  right: 20px;
+  margin-top: 10px;
+
+}*/

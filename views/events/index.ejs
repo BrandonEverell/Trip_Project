@@ -1,22 +1,29 @@
 <%- include('../partials/header.ejs') %>
 
-<div class="container eventHeader">
+<div class="container eventHeader d-flex justify-content-center">
 
-  <div class="card">
+  <div class="card col-10">
     <div class="card-header text-center">
-    <h3> Create an Event</h3>
+    <h2> Events</h2>
   </div>
 <% for (let event of events) { %>
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title"><a href="/events/<%= event.id %>"><%= event.title %></a></h4>
-    <h6 class="card-subtitle text-muted"><%= event.date%></h6>
+<div class="card mt-2">
+  <div class="card-body d-flex">
+  <div class="col-8">
+    <h4 class="card-title mt-4"><a href="/events/<%= event.id %>"><%= event.title %></a></h4>
+    <h6 class="card-subtitle text-muted"><%= moment(event.date).format('MMMM Do YYYY')%></h6>
+  </div>
+  <div class="col-4 d-flex justify-content-end">
   <form
     action="events/<%= event.id %>"
     method="POST"
     >
-      <input class="btn btn-success" type="submit" value="join">
+
+      <input class="btn btn-success btn-lg btn-raised mt-4" type="submit" value="join">
       </form>
+
+      
+      </div>
     </div>
   </div>
 <% } %>

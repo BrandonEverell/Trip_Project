@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const kx = require("../db/connection");
+const moment = require('moment');
 
 const UsersController = {
   new(req, res, next) {
@@ -11,11 +12,18 @@ const UsersController = {
     const { currentUser } = req
 
     try {
+
+      const attendees = await kx
+        .select("events.*")
+        .from("attendees")
+        .innerJoin("events", "attendees.event_id", "events.id")
+        .where({ user_id: id });
+
       const users = await kx
       .first("users.*")
       .from("users")
       .where({"users.id": id})
-      .then(users => res.render("users/show", { users}))
+      .then(users => res.render("users/show", { users, attendees, moment}))
     } catch (error) {
       next(error);
     }
@@ -32,7 +40,7 @@ const UsersController = {
 
     try {
       const passwordDigest = await bcrypt.hash(password, 10);
-    
+
 
       const [user] = await kx
         .insert({ first_name, last_name, email, passwordDigest })

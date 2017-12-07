@@ -24,18 +24,36 @@ const authRoutes = require('./routes/authRoutes');
 // const root = require('./routes');
 //init app
 const app = Express();
+app.use((req,res,next)=>{
+  console.log('express')
+  next();
+})
 
 // view engine
 app.set('view engine', 'ejs')
+app.use((req,res,next)=>{
+  console.log('viewengine')
+  next();
+})
 app.use(Express.static(path.join(__dirname, 'public')))
-
+app.use((req,res,next)=>{
+  console.log('assts')
+  next();
+})
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use((req,res,next)=>{
+  console.log('bodyparser')
+  next();
+})
 
 app.use(morgan('dev'))
  app.use(methodOverride('_method'))
+ app.use((req,res,next)=>{
+   console.log('methodoverride')
+   next();
+ })
 app.use(session({
   name: '_trip',
   secret: 'supersecret', // key used to encrypt session
@@ -46,35 +64,73 @@ app.use(session({
   saveUninitialized: false,
   store: new KnexSessionStore({knex: kx})
 }))
-// Connect flas
+app.use((req,res,next)=>{
+  console.log('session1')
+  next();
+})
+
 app.use(flash())
+app.use((req,res,next)=>{
+  console.log('flash')
+  next();
+})
 // app.use(function (req,res, next) {
 //   res.locals.success_msg = req.flash('success_msg');
 //   res.locals.error_msg = req.flash('error_msg');
 //   res.locals.error = req.flash('error');
 // });
 app.use(async function setCurrentUser (req, res, next) {
-  const {userId} = req.session
+  // check whether there is someone normally logged in
+  const {userId:regularLoggedInUserId, passport} = req.session
+  //check whether they are logged in via passport
+  let passportLoggedInUserId
+  if (passport) {
+    const {user} = passport
+    passportLoggedInUserId = user
+  }
+  console.log('here#############');
 
-let user
-req.currentUser = false
-res.locals.currentUser = false
+  const userId = regularLoggedInUserId || passportLoggedInUserId
 
-if (userId) {
-  user = await kx.first().from('users').where({id: userId})
-  req.currentUser = user
-  res.locals.currentUser = user
-}
-next()
+  let user
+  req.currentUser = false
+  res.locals.currentUser = false
+  console.log('here@@@@@@@@@@@@@@@1')
+  if (userId) {
+    console.log('here###############2')
+    user = await kx.first().from('users').where({id: userId}).catch(error => console.log(error));
+    if (user){
+      req.currentUser = user
+      res.locals.currentUser = user
+    }
+    console.log('here$$$$$$$$$$$$3')
+
+    console.log('#################################&&&&&&&&&&&&&', req.currentUser)
+        console.log('here$$$$$$$$$$$$4###')
+
+        console.log('here$$$$$$$$$$$$5')
+  }
+  next()
 });
 
+// app.use( function setCurrentMember (req, res, next) {
+//
+// });
 
 
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
+
+
+app.use((req,res,next)=>{
+  console.log('XXXXXXXXXXXX')
+  next();
+})
+passport.initialize()
+console.log('test')
+passport.session();
+console.log('sessssssssion')
 
 app.use(root);
 app.use(welcome);

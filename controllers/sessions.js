@@ -27,6 +27,7 @@ const SessionsController = {
   destroy (req, res, next) {
     console.log("IS THIS DOING ANYTHING??????????????")
      req.session.userId = null
+     req.logout()
      req.flash('success', 'Logged out successfully!')
      res.redirect('/')
    }

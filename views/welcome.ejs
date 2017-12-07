@@ -1,5 +1,5 @@
 <%- include('./partials/header') %>
-  <div id="welcomebg" class="container-fluid col-md-12 flex-direction: row align-content: flex-start">
+  <div id="welcomebg" class="d-flex justify-content-center align-items-center">
 <%# justify-content-center align-items-center%>
   <%# <div id="login" class="card text-center" style="width: 20rem;">
   <div class="card-block">
@@ -10,11 +10,6 @@
 </div>
 </div>%>
 
-<div class="col-md-9 transbox">
-  <h1>ADVENTURE
-  CONNECT
-  SHARE</h1>
-</div>
 
   <div id="login" class=" col-md-3 text-center">
   <div class="card bg-light">
@@ -40,13 +35,13 @@
      </div>
 
      <input
-       class="btn btn-primary"
+       class="btn btn-raised btn-primary d-flex align-self-center text-center"
        type="submit"
        value="Log In"
      />
    </form>
-   <a href="/auth/facebook" class="btn btn-primary">Facebook Login</a>
-   <a href="/auth/google" class="btn btn-primary">Google Login</a>
+   <%# <a href="/auth/facebook" class="btn btn-primary">Facebook Login</a>
+   <a href="/auth/google" class="btn btn-primary">Google Login</a>%>
   <a href="/users/new" class="btn btn-primary"> Don't have an account? Sign up</a>
 
 </div>

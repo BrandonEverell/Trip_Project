@@ -5,6 +5,7 @@ const UsersController = require('./controllers/users')
 const SessionsController = require('./controllers/sessions')
 const EventsController = require('./controllers/events')
 const multer = require('multer')
+const moment = require('moment');
 
 const upload = multer({dest: path.join(__dirname, 'public', 'uploads')});
 

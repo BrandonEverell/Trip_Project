@@ -1,4 +1,5 @@
 const kx = require("../db/connection");
+const moment = require('moment');
 
 const EventsController = {
   index(req, res, next) {
@@ -7,7 +8,7 @@ const EventsController = {
       .from("events")
       .innerJoin("users", "events.creator_id", "users.id")
       .orderBy("events.created_at", "DESC")
-      .then(events => res.render("events/index", { events }));
+      .then(events => res.render("events/index", { events, moment }));
   },
 
   async show(req, res, next) {
@@ -35,7 +36,7 @@ const EventsController = {
         .orderBy("posts.created_at", "DESC")
         .where({ 'events.id': id })
 
-        .then(posts => res.render("events/show", { event, attendees, posts }))
+        .then(posts => res.render("events/show", { event, attendees, posts, moment }))
 
 
     } catch (error) {
@@ -90,13 +91,24 @@ const EventsController = {
           .innerJoin("events", "posts.event_id", "events.id")
           .innerJoin("users", "posts.user_id", "users.id")
           .where({ 'events.id': id })
-          .then(posts => res.render("events/show", { event, attendees, posts }))
+          .then(posts => res.render("events/show", { event, attendees, posts, moment }))
 
 
     } catch (error) {
       next(error);
     }
   },
+
+  // leaveGroup(req, res, next) {
+  //   const { currentUser } = req;
+  //   const { id } = req.params;
+  //
+  //   kx
+  //   .from("attendees")
+  //   .where({ user_id: currentUser.id, event_id: id })
+  //   .del()
+  //
+  // },
 
   async newPost(req, res, next) {
     const {id} = req.params;
@@ -131,7 +143,7 @@ const EventsController = {
           res.redirect(`/events/${id}`);
         });
     } else {
-  
+
 
       const insertPromiseArray = req.files.map(file => {
         return kx

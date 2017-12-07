@@ -10,11 +10,13 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-  passport.deserializeUser((id, done) => {
-    kx('users').where({id}).first()
-    .then((user) => { done(null, user); })
-    .catch((err) => { done(err,null); });
-  });
+passport.deserializeUser((id, done) => {
+  kx('users').where({id}).first()
+  .then((user) => {
+    done(null, user);
+  })
+  .catch((err) => { done(err,null); });
+});
 
 
 
@@ -26,14 +28,17 @@ passport.use(
       callbackURL: "/auth/google/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
+      console.log(profile)
       let user = await kx.first()
                         .from('users')
                         .where({googleID: profile.id})
+                        .catch(error => next(error));
 
     if (!user) {
       user = await kx
           .insert({googleID: profile.id})
           .into('users')
+          .catch(error => next(error));
     }
      return cb(null, user);
     }
@@ -47,14 +52,17 @@ passport.use(
       callbackURL: "/auth/facebook/callback"
     },
     async (accessToken, refreshToken, profile, cb) => {
+        console.log('profile:', profile)
       let user = await kx.first()
                         .from('users')
                         .where({facebookID: profile.id})
+                        .catch(error => next(error));
 
     if (!user) {
       user = await kx
           .insert({facebookID: profile.id})
           .into('users')
+          .catch(error => next(error));
     }
      return cb(null, user);
     }

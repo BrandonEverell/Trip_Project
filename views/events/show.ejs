@@ -5,7 +5,7 @@
   <div class="card">
     <div class="card-body">
       <h2 class="card-header"><strong> <%= event.title %></strong> </h2>
-      <h5> <%=event.date%> </h5>
+      <h5 class="mt-2"> <%=moment(event.date).format('MMMM Do YYYY')%> </h5>
       <a class="card-link" href="/events/<%=event.id%>/newPost"> Create  New Post </a>
     </div>
 
@@ -20,7 +20,7 @@
     </div>
     <ul class="list-group">
     <% attendees.forEach(attendee => { %>
-        <li class="list-group-item list-group-item-action"><strong><%= attendee.first_name %> <%= attendee.last_name %></strong></li>
+        <li class="list-group-item list-group-item-action"><strong><a href="/users/<%= attendee.id %>"><%= attendee.first_name %> <%= attendee.last_name %></a></strong></li>
       <% }) %>
       </ul>
     </div>
