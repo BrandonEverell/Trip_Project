@@ -4,7 +4,7 @@
 
   <div class="card col-10">
     <div class="card-header text-center">
-    <h2> Events</h2>
+    <h4> Events</h4>
   </div>
 <% for (let event of events) { %>
 <div class="card mt-2">
@@ -14,15 +14,16 @@
     <h6 class="card-subtitle text-muted"><%= moment(event.date).format('MMMM Do YYYY')%></h6>
   </div>
   <div class="col-4 d-flex justify-content-end">
-  <form
-    action="events/<%= event.id %>"
-    method="POST"
-    >
+  <% if (currentUser) { %>
+    <form
+      action="events/<%= event.id %>"
+      method="POST"
+      >
 
-      <input class="btn btn-success btn-lg btn-raised mt-4" type="submit" value="join">
-      </form>
+        <input class="btn btn-success btn-lg btn-raised mt-4" type="submit" value="join">
+        </form>
+<%  } %>
 
-      
       </div>
     </div>
   </div>

@@ -99,16 +99,20 @@ const EventsController = {
     }
   },
 
-  // leaveGroup(req, res, next) {
-  //   const { currentUser } = req;
-  //   const { id } = req.params;
-  //
-  //   kx
-  //   .from("attendees")
-  //   .where({ user_id: currentUser.id, event_id: id })
-  //   .del()
-  //
-  // },
+  leaveGroup(req, res, next) {
+    const { currentUser } = req;
+    const { id } = req.params;
+
+    kx
+    .from("attendees")
+    .where({ user_id: currentUser.id, event_id: id })
+    .del()
+    .then(() => {
+      console.log("IS THIS DOING ANYTHING??????????????")
+      res.redirect('/events')
+    })
+
+  },
 
   async newPost(req, res, next) {
     const {id} = req.params;

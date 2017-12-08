@@ -46,6 +46,7 @@ events.get('/new', EventsController.new)
 events.post('/', EventsController.create)
 events.get('/:id', EventsController.show)
 events.post('/:id', EventsController.joinGroup)
+events.delete('/:id', EventsController.leaveGroup)
 events.get('/:id/newPost', EventsController.newPost)
 events.post('/:id/createPost', upload.array('photo'), EventsController.createPost)
 
