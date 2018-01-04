@@ -10,7 +10,7 @@
 </div>
 </div>%>
 
-
+<% if(!currentUser) { %>
   <div id="login" class=" col-md-3 text-center">
   <div class="card bg-light">
   <h2 class="card-header bg-success text-white ">Log In</h2>
@@ -42,12 +42,14 @@
    </form>
    <%# <a href="/auth/facebook" class="btn btn-primary">Facebook Login</a>
    <a href="/auth/google" class="btn btn-primary">Google Login</a>%>
-  <a href="/users/new" class="btn btn-primary"> Don't have an account? Sign up</a>
+  <a href="/users/new" class="btn btn-primary"> "Don't have an account? Sign up"</a>
 
 </div>
 </div>
 </div>
-
+<% } else { %>
+<h1 class="welcomePage"> Welcome </h1>
+  <% } %>
 </div>
 
 <%- include('./partials/footer') %>

@@ -20,6 +20,11 @@
   align-items: flex-start;
 }
 
+.welcomePage{
+  font-size: 8vw;
+  color: white;
+}
+
 .transbox {
 
 background: rgba(0, 0, 0, 0);

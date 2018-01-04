@@ -2,10 +2,10 @@
 <div class="container col-md-12 flex-direction: row align-content: flex-start">
 
   <div class="col-md-3 sideBar ">
-  <div class="card">
+  <div class="card text-center">
     <div class="card-body">
-      <h4 class="card-header"><strong> <%= event.title %></strong> </h4>
-      <h5 class="mt-2"> <%=moment(event.date).format('MMMM Do YYYY')%> </h5>
+      <h4 class="card-header text-center"><strong> <%= event.title %></strong> </h4>
+      <h5 class="mt-2 text-center"> <%=moment(event.date).format('MMMM Do YYYY')%> </h5>
       <a class="card-link" href="/events/<%=event.id%>/newPost"> Create  New Post </a>
     </div>
 
