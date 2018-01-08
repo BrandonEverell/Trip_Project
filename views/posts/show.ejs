@@ -9,16 +9,43 @@
           <div class="card-block">
             <h3 class="card-title"><strong><%= post.title %></strong></h3 >
             <p class="card-text"><%= post.content %></p>
+            <form action="<%= post.id %>/comments" method="POST">
+              <div class="form-group">
+                <textarea
+                class="form-control"
+                rows="3"
+                name="content"
+                placeholder="Add a comment..."
+                ></textarea>
+              </div>
+              <input
+              class="btn btn-outline-primary align-self-end"
+              type="submit"
+              value="Submit"
+              >
+            </form>
           </div>
+          <div class="card-block col-md-12">
+            <ul class="list-group">
+              <% for (let comment of comments) { %>
+                <li class="card list-group-item">
+                  <div class="card-body">
+                    <strong class="card-text"><a href="/users/<%=comment.link %>"><%=comment.first%> <%=comment.last%></a></strong>
+                    <p class="card-text"><%=comment.content %></p>
+                  </div>
+                </li>
+              <% } %>
+            </ul>
+        </div>
         </div>
         <div class="col-md-9">
           <div class="card-img-b">
               <img class="card-img" src="<%= post.photo_path %>">
           </div>
         </div>
-      </div>
     </div>
   </div>
+</div>
 
 
 

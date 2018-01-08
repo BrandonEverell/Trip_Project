@@ -20,7 +20,16 @@ const PostsController = {
         .innerJoin("users", "posts.user_id", "users.id")
         .where({ "posts.id": id });
 
-      res.render("posts/show", { post });
+        const comments = await kx
+        .select('comments.*', 'users.first_name as first', 'users.last_name as last', 'users.id as link')
+        .from('comments')
+        .innerJoin('users', 'comments.user_id', 'users.id')
+        .innerJoin('posts', 'comments.post_id', 'posts.id')
+        .where({post_id: id})
+        .orderBy('created_at', 'DESC')
+
+
+      res.render("posts/show", { post, comments });
     } catch (error) {
       next(error);
     }
@@ -44,7 +53,7 @@ const PostsController = {
         .into("posts")
         .then(() => {
           req.flash("success", "Post Created!");
-          res.redirect(`"/events/${event_id}`);
+          res.redirect(`/events/${event_id}`);
         });
     } else {
       console.log("continue as normal");
