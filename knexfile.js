@@ -24,11 +24,14 @@ module.exports = {
 },
 
   production: {
-    ...sharedConfig,
-    connection: {
-    database: 'trip-database'
-
-    }
+    client: 'postgresql',
+    debug: true,
+    connection: process.env.DATABASE_URL
+  migrations: {
+    tableName: 'knex_migrations',
+    directory: './db/migrations'
+  },
+  ssl: true;
   }
 
 };
