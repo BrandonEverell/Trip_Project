@@ -1,8 +1,4 @@
-const kx = require('knex')({
-   client: 'pg',
-   connection: {
-     database: 'trip-database'
-   }
- })
+const knexConfig = require('../knexfile')[process.env.NODE_ENV || 'development']
+const kx = require('knex')(knexConfig)
 
- module.exports = kx
+module.exports = kx;
