@@ -1,0 +1,55 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="container col-md-8 mt-4">
+<div class="card">
+  <div class="card-header text-center">
+  <h3> Create an Event</h3>
+</div>
+
+  <form
+  class="flex-direction: coloumn col-md-12"
+  action="/events"
+  method="POST"
+  >
+
+  <div class="form-group col-md-12">
+    <textarea
+    class="form-control"
+
+    name="title"
+    type="text"
+    placeholder="Title..."
+    ></textarea>
+  </div>
+
+      <div class="form-group col-md-12">
+
+        <textarea
+        class="form-control"
+        rows='10'
+        name="description"
+        type="text"
+        placeholder="Event Details..."
+        ></textarea>
+      </div>
+<div class="row">
+    <div class="form-group col-md-6">
+      <label for="date"><strong>Event Date</strong></label>
+      <input
+        name="date"
+        type="date"
+      >
+    </div>
+
+    <input
+        class="btn btn-outline-primary col-md-2 ml-auto mr-4 btn-raised"
+        type='submit'
+        value='Submit'
+      />
+    </form>
+  </div>
+  </div>
+</div>
+
+
+<%- include('../partials/footer.ejs') %>

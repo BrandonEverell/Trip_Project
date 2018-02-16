@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Rambla');
+ @import url('https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css');
+ @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
+
+* {
+  font-family: 'Oxygen', sans-serif;
+}
+
+
+#welcomebg {
+  background-image: url("../images/sample.jpg");
+  background-repeat:no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+}
+
+#login{
+  display: flex;
+  align-items: flex-start;
+}
+
+.welcomePage{
+  font-size: 8vw;
+  color: white;
+}
+
+.transbox {
+
+background: rgba(0, 0, 0, 0);
+}
+
+
+.transbox h1 {
+  color: white;
+  font-size: 8vw;
+}
+
+
+.transbox h3 {
+  color: white;
+
+}
+
+.postsIndex {
+  margin-top: 10px;
+}
+
+.newPost {
+  padding: 0px;
+  margin: 10px;
+  height: 95vh;
+}
+
+.sideBar {
+  position: fixed;
+  right: 20px;
+  margin-top: 10px;
+}
+
+.card-img-bottom {
+  color: #fff;
+}
+
+body {
+   padding-top: 55px;
+  }
+
+.avatar {
+  width: 250px;
+  height: 250px;
+
+}
+
+/*.listRight {
+  position: fixed;
+  right: 20px;
+  margin-top: 10px;
+
+}*/

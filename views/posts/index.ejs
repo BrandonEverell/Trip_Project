@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+<% for (let post of posts) { %>
+  <div class="col-sm-8 postsIndex">
+    <div class="card">
+      <div class="card-header">
+        <strong><%= post.title %></strong>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          <%= post.content %>
+        </p>
+      </div>
+      <a href="/posts/<%= post.id %>">
+        <img class="card-img" src="<%= post.photo_path %>">
+      </a>
+
+    </div>
+  </div>
+<% } %>
+
+
+<%- include('../partials/footer') %>

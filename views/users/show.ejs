@@ -1,0 +1,44 @@
+
+<%- include('../partials/header') %>
+<div class="container col-md-10 d-flex justify-content-center mt-4">
+  <div class=" card col-md-12">
+    <h1 class="card-header text-center"> <%=users.first_name %> <%=users.last_name %> </h1>
+  <div class="row">
+  <div class="card-body col-md-4">
+  <% if (!users.photo_path) { %>
+    <img class="card-img avatar"
+    src='../images/default-avatar.jpg'>
+  <% } else { %>
+  <img class="card-img avatar"
+  src="<%=users.photo_path %>">
+  <% } %>
+<div class="card-body">
+  <h2 class="card-title"> About Me:</h2>
+  <h6 class="card-text"><%=users.about %></h6>
+</div>
+</div>
+    <div class="card-body col-md-8 ml-auto">
+        <ul class="list-group">
+          <h2 class="card-header">Joined Groups</h2>
+          <% attendees.forEach(attendee => { %>
+            <div class="row">
+            <li class="list-group-item list-group-item-action col-6"><strong><a href="/events/<%= attendee.id %>"><%= attendee.title%></a></li> <p class="ml-auto mt-3 col-6">Date: <%=moment(attendee.date).format('MMMM Do YYYY')%></strong></p>
+            </div>
+          <% }) %>
+        </ul>
+  </div>
+  </div>
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+
+
+<%- include('../partials/footer') %>

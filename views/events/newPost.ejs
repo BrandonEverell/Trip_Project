@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+
+<div class="container col-md-8 mt-4">
+  <div class="card ">
+  <div class="card-header text-center ">
+  <h3>  Create a post </h3>
+  </div>
+
+  <form
+  class="flex-direction: column col-md-12 "
+  action="/events/<%=event.id%>/createPost"
+  enctype="multipart/form-data"
+  method="POST"
+  >
+
+  <div class="form-group col-md-12">
+    <textarea
+    class="form-control"
+    name="title"
+    type="text"
+    placeholder="Title..."
+    ></textarea>
+  </div>
+
+    <div class="form-group col-md-12">
+      <textarea
+        class="form-control"
+        rows='20'
+        name='content'
+        placeholder="Post Details"
+      ></textarea>
+    </div>
+    <div class="row">
+    <div class="form-group col-md-6">
+        <input
+          class="form-control-file"
+          name="photo"
+          type="file"
+          multiple
+        />
+      </div>
+
+    <input
+        class="btn btn-outline-primary col-md-2 ml-auto mr-4 btn-raised"
+        type='submit'
+        value='Submit'
+      />
+    </form>
+  </div>
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<%- include('../partials/footer') %>
